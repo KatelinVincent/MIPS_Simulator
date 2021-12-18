@@ -1,0 +1,185 @@
+//These are functions we attempted to use, but did not work. We decided it wouldn't hurt to store the functions in an extra file in case we needed view previous functions.
+//lines: NOT complete
+/*
+needs to hold each line from the input.txt file
+be able to call a specific line from the input.txt file at any moment
+*/
+string lines(int inputLines, int count){
+
+  ifstream input("input.txt");
+  string lineContent[inputLines];
+  string line;
+
+  while (getline(input, line)){
+   input >> lineContent[count];
+  }
+return line;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <vector>
+#include <fstream>
+#include <iostream>
+
+using namespace std;
+
+int main(){
+  string filename = "input.txt";
+  string output_filename = "";
+
+  ifstream fin;
+  ofstream fout;
+  
+  string line = "";
+
+  fin.open(filename);
+  vector<string> lines;
+  //if needing to output to a filename
+  //fout.open(output_filename);
+  while(getline(fin, line)){
+    lines.push_back(line);
+    //cout << line << endl;
+  }
+  for(int i=0; i<lines.size(); i++){
+    cout << lines[i] << endl;
+  }
+
+  return 0;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+instruction[i] = lines(inputLines, i).substr(0, lines(inputLines, lineNum).find(" "));
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//WE NEED TO CREATE AND FILL REGISTERS
+for(int i = 0; i<inputLines; i++){
+  if(instruction[i] == "add "){
+    cout << add(reg1, reg2) << endl;
+  }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  for(int i = 0; i<inputLines; i++)
+  {
+    int reg = lines(inputLines,i).find('$');
+    if(reg > 0){
+      string tempString;
+      int tempInt[3];
+      cout << "Command found: ";
+      //for(int j = 0; j < 3; j++){
+        tempString = lines(inputLines,i).at(reg+2);
+        cout << tempString;
+
+         /* tempInt[j] = lines(inputLines,i).at(reg+2);
+          if(tempInt[j] == 48)
+            tempInt[j] = 0;
+          else if(tempInt[j] == 49)
+            tempInt[j] = 1;*/
+      //}
+      /*cout << endl << "tempInt[0]: " << tempInt[0] << endl;
+      cout << endl << "tempInt[1]: " << tempInt[1] << endl;
+      cout << endl << "tempInt[2]: " << tempInt[2] << endl;*/
+      cout << endl;
+    }
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  instruction[i] = lines(inputLines, i).substr(0, lines(inputLines, lineNum).find(" "));
+
+  cout << line.substr(0, line.find_first_of(" ", 0)) << endl
+
+
+
+   while (getline(input, line)){
+        lines.push_back(line);
+    }
+    for (const auto &i : lines)
+        cout << i << endl;
+
+        for (const auto &i : linesTest)
+        cout << "| "<< i << " |" <<endl;
+
+
+        //for (int counter=0;counter<1000;counter++){
+      //  getline(input, tempVar[counter]);  // add indstruction chracters to array 
+       // if(tempVar[counter] == " ")
+        //    {
+         //     break;
+          //  }
+            
+    //}
+    
+    
+    //charCount++; } // track length of instruction
+    //tempHold[branchCount] = convertToString(tempVar, charCount);// convert char array to string
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //separate: NOT WORKING IMPLEMENT LATER
+//Separates the command portion of the string to allow for processing
+string separate(int inputLines, int lineNum){
+    string instruction[inputLines];
+    int i;
+    //for(i = 0; i<inputLines; i++){
+    int colon = lines(inputLines,i).find(':');
+    if(colon < 0){
+      instruction[i] = lines(inputLines, i).substr(0, lines(inputLines, lineNum).find(" "));
+      //cout << endl << instruction[i];
+    }
+    else{
+      instruction[i] = lines(inputLines, i).substr(0, lines(inputLines, lineNum).find(" "));
+    }
+  //}
+  return instruction[i];
+}
+
+////////////////////////////////////////////////////////////////////////
+//lines: NOT complete
+string lines(int inputLines, int lineNum){
+  string filename = "input.txt";
+  string output_filename = "";
+
+  ifstream fin;
+  ofstream fout;
+  
+  string line = "";
+
+  fin.open(filename);
+  vector<string> lines;
+  //if needing to output to a filename
+  //fout.open(output_filename);
+  while(getline(fin, line)){
+    lines.push_back(line);
+  }
+  cout<< "line is " << line << " Line Num is"<< lineNum<< endl;
+  return lines[lineNum];
+}
+////////////////////////////////////////////////////////////////////////
+// loads value from data mem into register
+int lw(int offset, int reg1, int dataMem[])
+{
+  offset = offset/4;
+  return dataMem[reg1+offset];
+}
+
+beq $r0, $r0, 5
+loop:
+srl $r4, $r9, 2
+branch:
+and $r5, $r6, $r6
+addi $r9, $r9, 3
+////////////////////////////////////////////////////////////////////////
+// branch if equal to 
+// will jump 
+bool beq(int reg1, int reg2){
+if (reg1 == reg2)
+return true;
+else
+return false;
+}
+
+test:
+addi $r2, $r0, 3
+addi $r3, $r0, 3
+beq $r2, $r3, jump
+addi $r3, $r0, 12
+jump:
+or $r4, $r2, $r3

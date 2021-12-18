@@ -1,0 +1,82 @@
+To Compile: clang++-7 -pthread -std=c++17 -o main main.cpp
+
+//test cases start below *********
+// taken from final review slide 
+ Easy: Arithemetic operations
+Input:
+addi $r2, $r0, 5      // r2 = r2 + 5
+addi $r3, $r0, 10      // r3 = r3 + 1
+add $r4, $r3, $r2     // r4 = r3 + r2
+sub $r5, $r4, $r3     // r5 = r4 - r3
+mul $r6, $r2, $r3     // r6 = r2 * r3
+sll $r7, $r3, 2       // r8 = 10 * 2 * 2
+srl $r8, $r3, 2       // r9 = 10 / 2 / 2
+
+Output:
+$r2 = 5
+$r3 = 10
+$r4 = 15
+$r5 = 5
+$r6 = 50
+$r7 = 40
+$r8 = 2
+
+PASSED!
+
+Intermediate: using store/load/comparison operations
+//test case 2 *****************
+Input:
+addi $r2, $r0, 5      // r2 = r0 + 5
+addi $r3, $r0, 10     // r3 = r0 + 10
+and $r4, $r3, $r3     // r4 = 1 if r3 = r3
+or $r5, $r2, $r3      // r5 = bitwise or operate of r2 and r3 
+sw $r2, 0($r3)       // store r2 into r3+0
+lw $r6, 0($r3)        // load into r6 the value at address r3+16
+
+Output:
+$r2 = 5
+$r3 = 10
+$r4 = 1
+$r5 = 15
+$r6 = 10
+$r7 = 0
+$r8 = 0
+
+Difficult: using branch 
+//test case 3 *****************
+addi $r5, $r0, 5         // puts the value 5 in register 5
+nop
+beq $r0, $r0, jump       // branch to jump if r5 == r5
+addi $r2, $r2, 1         // r2 = r2 + 1
+jump:                    // jump location
+addi $r2, $r0, 8         // puts the value 8 in register 2
+nop
+
+Output:
+$r2 = 8
+$r3 = 0
+$r4 = 0
+$r5 = 5
+$r6 = 0
+$r7 = 0
+$r8 = 0
+
+
+Difficult: using j
+//test case 4 *****************
+
+j jumpHere            // jumps to "jumpHere" skipping the next 2 lines
+addi $r2, $r0, 5      // r2 = r0 + 5
+addi $r3, $r0, 6      // r4 = r0 + 6
+jumpHere:             // jump point
+addi $r2, $r0, 9      // r2 = r0 + 5
+addi $r4, $r0, 7      // r4 = r0 + 6
+
+Output:
+$r2 = 9
+$r3 = 0
+$r4 = 7
+$r5 = 0
+$r6 = 0
+$r7 = 0
+$r8 = 0
